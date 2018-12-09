@@ -16,6 +16,8 @@ app.use(express.static(path.join(__dirname,'public')));
 //signup Route cause it is a post that i am handling
 
 app.post('/signup',(req,res)=>{
+    console.log(req.body);
+    res.send('hello');
 
 })
 
