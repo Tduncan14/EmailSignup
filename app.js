@@ -38,13 +38,17 @@ app.post('/signup',(req,res)=>{
                  }
                }
            ]
-
     }
+    // Turning the object into a string
+
+    const postData =JSON.stringify(data);
+
+
 
     // request to mail chimp api
 
     const options = {
-        url:'https://<dc>.api.mailchimp.com/3.0/lists/ab534d32e5',
+        url:'https://us19.api.mailchimp.com/3.0/lists/ab534d32e5',
         method:'POST',
         headers:{
             Authorization:'auth 482a20f03b2c0c7a783d5fcfc3f842fc-us19'
@@ -54,6 +58,21 @@ app.post('/signup',(req,res)=>{
     }
     
     request(options, (err,response,body ) =>{
+       if(err){
+           res.redirect('/fail.html');
+       }
+       else {
+           if(response.statusCode === 200){
+               res.redirect('/success.html');
+
+           }
+
+        else{
+            res.redirect('/fail.html');
+
+        }
+       };
+
 
     });
 
