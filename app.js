@@ -26,6 +26,21 @@ app.post('/signup',(req,res)=>{
          return;
     }
 
+// Construct req Data
+    const data = {
+           members:[
+               {
+                 email_address: email,
+                 status:'subscribed',
+                 merge_fields: {
+                     FNAME: firstName,
+                     LNAME: lastName
+                 }
+               }
+           ]
+
+    }
+
     // request to mail chimp api
 
     const options = {
@@ -33,7 +48,8 @@ app.post('/signup',(req,res)=>{
         method:'POST',
         headers:{
             Authorization:'auth 482a20f03b2c0c7a783d5fcfc3f842fc-us19'
-        }
+        },
+         body: postData
 
     }
     
