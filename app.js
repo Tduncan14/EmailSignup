@@ -16,10 +16,17 @@ app.use(express.static(path.join(__dirname,'public')));
 //signup Route cause it is a post that i am handling
 
 app.post('/signup',(req,res)=>{
-    console.log(req.body);
-    res.send('hello');
+  
+    // our objects into its own variable
+    const { firstName, lastName, email} = req.body;
 
-})
+    //  valiadation to make sure field is not empty
+    if(!firstName || !lastName || !email){
+         res.redirect('/fail.html');
+         return;
+    }
+
+});
 
 
 const PORT= process.env.PORT || 5002;
